@@ -48,10 +48,10 @@ class _ChatViewState extends State<ChatView> {
                     MyMessage message =
                         MyMessage.fromJson(json.encode(messages[index]));
                     return chatMessage(
-                        message.content,
-                        message.sender == myUserID
-                            ? const EdgeInsets.only(top: 8, left: 15)
-                            : const EdgeInsets.only(top: 8, right: 15));
+                        message,
+                        message.sender == myUserID ?
+                            Alignment.centerRight : Alignment.centerLeft,
+                        MediaQuery.of(context).size.width);
                   },
                 ),
               ),
