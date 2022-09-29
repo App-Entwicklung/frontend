@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'views/devView.dart';
+import 'views/dev_view.dart';
 import 'views/chat.dart';
 
 void main() {
