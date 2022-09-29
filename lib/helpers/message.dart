@@ -14,19 +14,17 @@ class MyMessage {
   }
 
   static MyMessage fromJson(String jsonString) {
-    Map<String, String> message = json.decode(jsonString);
+    Map message = json.decode(jsonString);
     return MyMessage._(message['sender']!, message['receiver']!,
-        message['timeStamp']!, message['content']!);
+        message['timestamp']!, message['content']!);
   }
 
   String toJsonString() {
-    return '''
-    {
-      "sender": $sender,
-      "receiver": $receiver,
-      "timestamp": $timestamp,
-      "content": $content
-    }
-    ''';
+    return jsonEncode({
+      "sender": sender,
+      "receiver": receiver,
+      "timestamp": timestamp,
+      "content": content
+    });
   }
 }
