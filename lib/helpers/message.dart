@@ -1,16 +1,21 @@
 import 'dart:convert';
 
-class Message {
+class MyMessage {
   final String sender;
   final String receiver;
   final String timestamp;
   final String content;
 
-  Message._(this.sender, this.receiver, this.timestamp, this.content);
+  MyMessage._(this.sender, this.receiver, this.timestamp, this.content);
 
-  static Message fromJson(String jsonString) {
+  static MyMessage fromValues(
+      String sender, String receiver, String timestamp, String content) {
+    return MyMessage._(sender, receiver, timestamp, content);
+  }
+
+  static MyMessage fromJson(String jsonString) {
     Map<String, String> message = json.decode(jsonString);
-    return Message._(message['sender']!, message['receiver']!,
+    return MyMessage._(message['sender']!, message['receiver']!,
         message['timeStamp']!, message['content']!);
   }
 
