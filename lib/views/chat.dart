@@ -21,12 +21,12 @@ class _ChatViewState extends State<ChatView> {
   var messageContent = "";
 
   sendMessage() {
-    if (messageContent == "") {
+    if (messageContent == "" || messageContent.trim().isEmpty) {
       return;
     }
     setState(() {
       messages.add(MyMessage.fromValues(myUserID, contactUserID,
-              DateTime.now().toIso8601String(), messageContent)
+              DateTime.now().toIso8601String(), messageContent.trim())
           .toJson());
     });
   }
@@ -65,7 +65,6 @@ class _ChatViewState extends State<ChatView> {
                     Expanded(
                       flex: 10,
                       child: TextField(
-                        controller: TextEditingController(text: 'Chat'),
                         onChanged: (value) {
                           messageContent = value;
                         },
