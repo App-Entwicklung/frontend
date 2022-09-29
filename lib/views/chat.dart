@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:frontend/helpers/message.dart';
+import 'package:frontend/widgets/chat_message.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -9,9 +12,21 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
-  var messages = []; //TODO: Fill onInit
-  var myUserID = ""; //TODO: As input param
-  var contactUserID = ""; //TODO: As input param
+  var messages = [
+    {"sender": "2", "receiver": "1", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
+  ]; //TODO: Fill onInit
+  var myUserID = "1"; //TODO: As input param
+  var contactUserID = "2"; //TODO: As input param
   var messageContent = "";
 
   sendMessage() {
@@ -28,12 +43,26 @@ class _ChatViewState extends State<ChatView> {
         appBar: AppBar(title: const Text('Chat')),
         body: Column(
           children: [
+            // Chat
             Expanded(
               flex: 25,
-              child: Container(
-                color: Colors.black,
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: ListView.builder(
+                  itemCount: messages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    MyMessage message =
+                        MyMessage.fromJson(json.encode(messages[index]));
+                    return chatMessage(
+                        message.content,
+                        message.sender == myUserID
+                            ? const EdgeInsets.only(top: 8, left: 15)
+                            : const EdgeInsets.only(top: 8, right: 15));
+                  },
+                ),
               ),
             ),
+            // TextInput
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(3),
