@@ -15,15 +15,6 @@ class _ChatViewState extends State<ChatView> {
   var messages = [
     {"sender": "2", "receiver": "1", "timestamp": "", "content": "HI"},
     {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
-    {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
   ]; //TODO: Fill onInit
   var myUserID = "1"; //TODO: As input param
   var contactUserID = "2"; //TODO: As input param
@@ -33,8 +24,11 @@ class _ChatViewState extends State<ChatView> {
     if (messageContent == "") {
       return;
     }
-    MyMessage.fromValues(myUserID, contactUserID,
-        DateTime.now().toIso8601String(), messageContent);
+    setState(() {
+      messages.add(MyMessage.fromValues(myUserID, contactUserID,
+              DateTime.now().toIso8601String(), messageContent)
+          .toJson());
+    });
   }
 
   @override
@@ -71,6 +65,7 @@ class _ChatViewState extends State<ChatView> {
                     Expanded(
                       flex: 10,
                       child: TextField(
+                        controller: TextEditingController(text: 'Chat'),
                         onChanged: (value) {
                           messageContent = value;
                         },
