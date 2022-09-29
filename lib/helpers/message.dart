@@ -19,12 +19,16 @@ class MyMessage {
         message['timestamp']!, message['content']!);
   }
 
-  String toJsonString() {
-    return jsonEncode({
+  Map<String, String> toJson() {
+    return {
       "sender": sender,
       "receiver": receiver,
       "timestamp": timestamp,
       "content": content
-    });
+    };
+  }
+
+  String toJsonString() {
+    return jsonEncode(toJson());
   }
 }
