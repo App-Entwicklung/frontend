@@ -17,10 +17,14 @@ class ChatsOverview extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-          child: ListView.builder(
-              itemCount: chatsData.length,
-              itemBuilder: (context, index) => chatCard(chatsData[index]))),
+      body: ListView.builder(
+        itemCount: chatsData.length,
+        itemBuilder: (context, index) => chatCard(chatsData[index], (() {})),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.person_add_alt_1),
+      ),
     );
   }
 }
