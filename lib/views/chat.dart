@@ -12,6 +12,7 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
+  var textFieldValue = "";
   var messages = [
     {"sender": "2", "receiver": "1", "timestamp": "", "content": "HI"},
     {"sender": "1", "receiver": "2", "timestamp": "", "content": "HI"},
@@ -25,6 +26,7 @@ class _ChatViewState extends State<ChatView> {
       return;
     }
     setState(() {
+      textFieldValue = "";
       messages.add(MyMessage.fromValues(myUserID, contactUserID,
               DateTime.now().toIso8601String(), messageContent.trim())
           .toJson());
@@ -49,8 +51,9 @@ class _ChatViewState extends State<ChatView> {
                         MyMessage.fromJson(json.encode(messages[index]));
                     return chatMessage(
                         message,
-                        message.sender == myUserID ?
-                            Alignment.centerRight : Alignment.centerLeft,
+                        message.sender == myUserID
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
                         MediaQuery.of(context).size.width);
                   },
                 ),
@@ -65,6 +68,7 @@ class _ChatViewState extends State<ChatView> {
                     Expanded(
                       flex: 10,
                       child: TextField(
+                        controller: TextEditingController(text: textFieldValue),
                         onChanged: (value) {
                           messageContent = value;
                         },
