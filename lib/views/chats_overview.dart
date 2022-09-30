@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/example/Chat_Example.dart';
 
 class ChatsOverview extends StatelessWidget {
   const ChatsOverview({super.key});
@@ -16,6 +17,7 @@ class ChatsOverview extends StatelessWidget {
       ),
       body: Container(
           child: ListView.builder(
+              itemCount: chatsData.length,
               itemBuilder: (context, index) => const Text("Test"))),
     );
   }
