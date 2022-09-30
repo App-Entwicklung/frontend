@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/example/Chat_Example.dart';
+import 'package:frontend/views/chat.dart';
 import 'package:frontend/widgets/chat_card.dart';
 
 class ChatsOverview extends StatelessWidget {
@@ -18,9 +19,11 @@ class ChatsOverview extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: chatsData.length,
-        itemBuilder: (context, index) => chatCard(chatsData[index], (() {})),
-      ),
+          itemCount: chatsData.length,
+          itemBuilder: (context, index) => chatCard(
+              chatsData[index],
+              (() => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ChatView()))))),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.person_add_alt_1),
