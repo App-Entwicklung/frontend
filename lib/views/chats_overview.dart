@@ -7,9 +7,16 @@ class ChatsOverview extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Chats"),
-        actions: [IconButton(icon: const Icon(Icons.search), onPressed: () {}, )],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {},
+          )
+        ],
       ),
-      body: Text('Rebekkas ToDo'),
+      body: Container(
+          child: ListView.builder(
+              itemBuilder: (context, index) => const Text("Test"))),
     );
   }
 }
