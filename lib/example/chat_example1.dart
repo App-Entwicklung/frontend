@@ -45,5 +45,5 @@ List chatsData = [
       image:
           "https://cdn.pixabay.com/photo/2019/03/25/18/37/azalea-4081033__340.jpg",
       time: "5h ago",
-      isActive: false)
+      isActive: false) 
 ];
