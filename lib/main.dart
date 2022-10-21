@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/views/metamask_login.dart';
 
 import 'views/dev_view.dart';
 import 'views/chat.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const DevView(),
-        '/chat': (context) => const ChatView()
+        '/chat': (context) => const ChatView(),
+        '/login': (context) => const MetamaskLogin()
       },
     );
   }
