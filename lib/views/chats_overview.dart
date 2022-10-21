@@ -21,11 +21,15 @@ class ChatsOverview extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-          itemCount: chatsData.length,
-          itemBuilder: (context, index) => chatCard(
-              chatsData[index],
-              (() => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ChatView()))))),
+        itemCount: chatsData.length,
+        itemBuilder: (context, index) => chatCard(
+          chatsData[index],
+          (() => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ChatView()),
+              )),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () {},
