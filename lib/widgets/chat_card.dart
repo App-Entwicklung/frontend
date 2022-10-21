@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../example/Chat_Example.dart';
+import '../example/chat_example.dart';
 
 Widget chatCard(Chat chat, VoidCallback press) => InkWell(
       onTap: press,
