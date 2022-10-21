@@ -20,3 +20,7 @@ In order to deploy a Flutter web app to Vercel, you need to have a Flutter Web A
 - [Flutter-Templates etc.](https://github.com/Solido/awesome-flutter)
 - [Flutter + Metamask](https://dev.to/bhaskardutta/building-with-flutter-and-metamask-8h5)
 - [DApp w/ Flutter & sol](https://blog.logrocket.com/building-dapp-flutter-solidity/)
+
+## Open to discuss
+
+Upgrading new Contracts -> let User select if new Contract is deployed which to use
