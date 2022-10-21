@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/example/chat_example.dart';
-import 'package:frontend/views/chat.dart';
-import 'package:frontend/widgets/bottom_menu.dart';
-import 'package:frontend/widgets/chat_card.dart';
+import '../example/chat_example.dart';
+import '../views/chat.dart';
+import '../widgets/bottom_menu.dart';
+import '../widgets/chat_card.dart';
 
 class ChatsOverview extends StatelessWidget {
   const ChatsOverview({super.key});

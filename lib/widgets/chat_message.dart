@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/helpers/datetime_formatter.dart';
-import 'package:frontend/helpers/message.dart';
+import '../helpers/datetime_formatter.dart';
+import '../helpers/message.dart';
 
 Widget chatMessage(MyMessage message, Alignment alignment, double maxWidth) {
   var date = "";
