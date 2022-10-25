@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:frontend/helpers/message.dart';
-import 'package:frontend/widgets/chat_message.dart';
+
+import '../helpers/message.dart';
+import '../widgets/chat_message.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
