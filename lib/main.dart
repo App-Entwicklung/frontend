@@ -3,6 +3,7 @@ import 'package:frontend/views/test_view.dart';
 
 import 'views/dev_view.dart';
 import 'views/chat.dart';
+import 'views/chats_overview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const DevView(),
         '/chat': (context) => const ChatView(),
+        '/chatsOverview':(context) => const ChatsOverview(),
         '/home': (context) => const Web3Home()
       },
     );

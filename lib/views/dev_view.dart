@@ -8,7 +8,7 @@ class DevView extends StatefulWidget {
 }
 
 class _DevViewState extends State<DevView> {
-  final views = ['/', '/chat', '/login', '/home'];
+  final views = ['/', '/chat', '/chatsOverview', '/home'];
 
   @override
   Widget build(BuildContext context) {
