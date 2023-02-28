@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/helpers/contract.dart';
-import 'package:frontend/views/test_view.dart';
+import 'package:frontend/views/web3home.dart';
 
 import 'views/dev_view.dart';
 import 'views/chat.dart';
 import 'views/chats_overview.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Web3Home());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,8 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const DevView(),
         '/chat': (context) => const ChatView(),
-        '/chatsOverview': (context) => const ChatsOverview(),
-        '/home': (context) => const Web3Home()
+        '/chatsOverview': (context) => const ChatsOverview()
       },
     );
   }
