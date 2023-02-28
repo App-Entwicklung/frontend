@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/helpers/contract.dart';
 import 'package:frontend/views/test_view.dart';
 
 import 'views/dev_view.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Contract.initEthClient();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const DevView(),
         '/chat': (context) => const ChatView(),
-        '/chatsOverview':(context) => const ChatsOverview(),
+        '/chatsOverview': (context) => const ChatsOverview(),
         '/home': (context) => const Web3Home()
       },
     );

@@ -40,6 +40,8 @@ dependencies:
   google_fonts: ^3.0.1
   flutter_web3: ^2.1.9
   provider: ^6.0.4
+  web3dart: ^2.5.1
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

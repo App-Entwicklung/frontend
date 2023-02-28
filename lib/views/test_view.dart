@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/views/chats_overview.dart';
 import 'package:provider/provider.dart';
 
 import '../classes/meta_mask_provider.dart';
@@ -16,7 +17,7 @@ class Web3Home extends StatelessWidget {
             return Center(
               child: Consumer<MetaMaskProvider>(
                 builder: (context, provider, child) {
-                  late final String message;
+                  late String message;
                   if (provider.isConnected && provider.isInOperatingChain) {
                     message =
                         'Connected ${context.read<MetaMaskProvider>().currentAddress}';
@@ -48,11 +49,9 @@ class Web3Home extends StatelessWidget {
                   } else {
                     message = 'Please use a Web3 supported browser.';
                   }
-                  return Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white),
-                  );
+
+                  //Page Content starts here
+                  return const ChatsOverview();
                 },
               ),
             );
