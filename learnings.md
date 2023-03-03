@@ -24,3 +24,7 @@ In order to deploy a Flutter web app to Vercel, you need to have a Flutter Web A
 ## Open to discuss
 
 Upgrading new Contracts -> let User select if new Contract is deployed which to use
+
+## Chain-Url
+
+Chain-Url: https://goerli.blockpi.network/v1/rpc/public verwendet für Goerli-testnet (Bestbewertet in https://chainlist.org/chain/5)
