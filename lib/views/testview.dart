@@ -31,9 +31,10 @@ class _TestState extends State<Test> {
                     )
                   }),
             ),
-            ElevatedButton(
+            Expanded(child: Container()),
+            IconButton(
                 onPressed: () async => {await Contract.createAccount(_value1)},
-                child: const Text("Go"))
+                icon: const Text("GO"))
           ],
         ),
         // Row(
