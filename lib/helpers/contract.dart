@@ -16,7 +16,7 @@ class Contract {
   }
 
   static Future<DeployedContract> getContract() async {
-    String abiFile = await rootBundle.loadString("assets/contract.json");
+    String abiFile = await rootBundle.loadString("assets/contract-ABI.json");
 
     String contractAdress = ""; //TODO!
 
