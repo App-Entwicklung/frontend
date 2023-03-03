@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/helpers/contract.dart';
+import 'package:frontend/views/testview.dart';
 import 'package:frontend/views/web3home.dart';
 
 import 'views/dev_view.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const DevView(),
         '/chat': (context) => const ChatView(),
-        '/chatsOverview': (context) => const ChatsOverview()
+        '/chatsOverview': (context) => const ChatsOverview(),
+        '/test': (context) => const Test()
       },
     );
   }

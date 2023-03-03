@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/classes/meta_mask_provider.dart';
-import 'package:provider/provider.dart';
 
 class DevView extends StatefulWidget {
   const DevView({Key? key}) : super(key: key);
@@ -10,7 +8,7 @@ class DevView extends StatefulWidget {
 }
 
 class _DevViewState extends State<DevView> {
-  final views = ['/', '/chat', '/chatsOverview'];
+  final views = ['/', '/chat', '/chatsOverview', "/test"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
