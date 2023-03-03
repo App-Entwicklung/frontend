@@ -12,16 +12,16 @@ class Contract {
 
   static void initEthClient() {
     httpClient = Client();
-    ethClient = Web3Client("", httpClient); //TODO! Insert url of goerli
+    ethClient =
+        Web3Client("https://goerli.blockpi.network/v1/rpc/public", httpClient);
   }
 
   static Future<DeployedContract> getContract() async {
     String abiFile = await rootBundle.loadString("assets/contract-ABI.json");
 
-    String contractAdress = ""; //TODO!
+    String contractAdress = "0x86bb1F3B75b013a1Bdd31EFb20de79E20b137036";
 
-    final contract = DeployedContract(
-        ContractAbi.fromJson(abiFile, "Name"), //TODO! change!
+    final contract = DeployedContract(ContractAbi.fromJson(abiFile, "ChatApp"),
         EthereumAddress.fromHex(contractAdress));
 
     return contract;
@@ -50,6 +50,36 @@ class Contract {
         Transaction.callContract(
             contract: contract, function: function, parameters: params),
         chainId: MetaMaskProvider.operatingChain);
+  }
+
+  static Future<void> createAccount(String accountName) async {
+    await writeToBlockchain("createAccount", [accountName]);
+  }
+
+  static Future<void> sendContactRequest(String ethAddress) async {
+    EthereumAddress address = EthereumAddress.fromHex(ethAddress);
+    await writeToBlockchain("sendContactRequest", [address]);
+  }
+
+  static Future<void> acceptContactRequest(String ethAdress) async {
+    EthereumAddress address = EthereumAddress.fromHex(ethAdress);
+    await writeToBlockchain("acceptContactRequest", [address]);
+  }
+
+  static Future<List<dynamic>> getReceivedContactRequests() async {
+    final result = await readFromBlockchain("getReceivedContactRequests");
+    return result;
+  }
+
+  static Future<void> sendMessage(String ethAddress, String message) async {
+    EthereumAddress address = EthereumAddress.fromHex(ethAddress);
+    await writeToBlockchain("sendMessage", [address, message]);
+  }
+
+  static Future<List<dynamic>> getMessages(String ethAddress) async {
+    EthereumAddress address = EthereumAddress.fromHex(ethAddress);
+    final result = await readFromBlockchain("getMessages", [address]);
+    return result;
   }
 
   static Credentials getPrivateEthKey() {
