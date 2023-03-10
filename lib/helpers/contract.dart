@@ -48,7 +48,10 @@ class Contract {
     await ethClient.sendTransaction(
         getPrivateEthKey(),
         Transaction.callContract(
-            contract: contract, function: function, parameters: params),
+            maxGas: ((await ethClient.estimateGas()).toInt() + 1) * 2,
+            contract: contract,
+            function: function,
+            parameters: params),
         chainId: MetaMaskProvider.operatingChain);
   }
 
