@@ -48,7 +48,7 @@ class Contract {
     await ethClient.sendTransaction(
         getPrivateEthKey(),
         Transaction.callContract(
-            maxGas: ((await ethClient.estimateGas()).toInt() + 1) * 2,
+            gasPrice: EtherAmount.inWei(await ethClient.estimateGas()),
             contract: contract,
             function: function,
             parameters: params),
