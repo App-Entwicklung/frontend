@@ -61,7 +61,8 @@ class _TestState extends State<Test> {
                     }),
               ),
               ElevatedButton(
-                onPressed: () async => {await Contract.createAccount(_value1)},
+                onPressed: () async =>
+                    {await Contract.createAccount(context, _value1)},
                 child: const Text("Go"),
               ),
               "create Account"),
@@ -75,7 +76,7 @@ class _TestState extends State<Test> {
               ),
               ElevatedButton(
                 onPressed: () async =>
-                    {await Contract.sendContactRequest(_value2)},
+                    {await Contract.sendContactRequest(context, _value2)},
                 child: const Text("Go"),
               ),
               "sendContactRequest"),
@@ -89,7 +90,7 @@ class _TestState extends State<Test> {
               ),
               ElevatedButton(
                 onPressed: () async =>
-                    {await Contract.acceptContactRequest(_value3)},
+                    {await Contract.acceptContactRequest(context, _value3)},
                 child: const Text("Go"),
               ),
               "acceptContactRequest"),
@@ -103,7 +104,8 @@ class _TestState extends State<Test> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  final result = await Contract.getReceivedContactRequests();
+                  final result =
+                      await Contract.getReceivedContactRequests(context);
                   showDialog(
                       context: context,
                       builder: ((context) {
@@ -133,7 +135,7 @@ class _TestState extends State<Test> {
               ),
               ElevatedButton(
                 onPressed: () async =>
-                    {await Contract.sendMessage(_value5, "HI")},
+                    {await Contract.sendMessage(context, _value5, "HI")},
                 child: const Text("Go"),
               ),
               "sendMessage"),
@@ -147,7 +149,7 @@ class _TestState extends State<Test> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  final result = await Contract.getMessages(_value6);
+                  final result = await Contract.getMessages(context, _value6);
                   showDialog(
                       context: context,
                       builder: ((context) {

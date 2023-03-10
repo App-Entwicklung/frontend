@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:frontend/classes/meta_mask_provider.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
 
@@ -27,12 +28,14 @@ class Contract {
     return contract;
   }
 
-  static Future<List<dynamic>> readFromBlockchain(String functionName,
+  static Future<List<dynamic>> readFromBlockchain(context,String functionName,
       [List<dynamic> params = const []]) async {
     final contract = await getContract();
     final function = contract.function(functionName);
 
     final result = await ethClient.call(
+      sender: EthereumAddress.fromHex(
+        Provider.of<MetaMaskProvider>(context, listen: false).currentAddress),
         contract: contract,
         function: function,
         params: params.isEmpty ? [] : params);
@@ -40,48 +43,65 @@ class Contract {
     return result;
   }
 
-  static Future<void> writeToBlockchain(String functionName,
+  static Future<void> writeToBlockchain(context, String functionName,
       [List<dynamic> params = const []]) async {
     final contract = await getContract();
     final function = contract.function(functionName);
 
-    await ethClient.sendTransaction(
-        getPrivateEthKey(),
-        Transaction.callContract(
-            gasPrice: EtherAmount.inWei(await ethClient.estimateGas()),
-            contract: contract,
-            function: function,
-            parameters: params),
+    final myAddress = EthereumAddress.fromHex(
+        Provider.of<MetaMaskProvider>(context, listen: false).currentAddress);
+
+    final price = await ethClient.estimateGas(
+        sender: myAddress,
+        to: contract.address,
+        data: function.encodeCall(params));
+    print(await ethClient.getBalance(EthereumAddress.fromHex(
+        Provider.of<MetaMaskProvider>(context, listen: false).currentAddress)));
+
+    print("MaxGas plain: $price");
+    print("MaxGas String: ${price.toString()}");
+
+    final transaction = Transaction.callContract(
+        from: myAddress,
+        maxGas: price.toInt(),
+        gasPrice: EtherAmount.fromUnitAndValue(EtherUnit.gwei, 50),
+        value: EtherAmount.zero(),
+        contract: contract,
+        function: function,
+        parameters: params);
+
+    await ethClient.sendTransaction(getPrivateEthKey(), transaction,
         chainId: MetaMaskProvider.operatingChain);
   }
 
-  static Future<void> createAccount(String accountName) async {
-    await writeToBlockchain("createAccount", [accountName]);
+  static Future<void> createAccount(context, String accountName) async {
+    await writeToBlockchain(context, "createAccount", [accountName]);
   }
 
-  static Future<void> sendContactRequest(String ethAddress) async {
+  static Future<void> sendContactRequest(context, String ethAddress) async {
     EthereumAddress address = EthereumAddress.fromHex(ethAddress);
-    await writeToBlockchain("sendContactRequest", [address]);
+    await writeToBlockchain(context, "sendContactRequest", [address]);
   }
 
-  static Future<void> acceptContactRequest(String ethAdress) async {
+  static Future<void> acceptContactRequest(context, String ethAdress) async {
     EthereumAddress address = EthereumAddress.fromHex(ethAdress);
-    await writeToBlockchain("acceptContactRequest", [address]);
+    await writeToBlockchain(context, "acceptContactRequest", [address]);
   }
 
-  static Future<List<dynamic>> getReceivedContactRequests() async {
-    final result = await readFromBlockchain("getReceivedContactRequests");
+  static Future<List<dynamic>> getReceivedContactRequests(context) async {
+    final result = await readFromBlockchain(context,"getReceivedContactRequests");
     return result;
   }
 
-  static Future<void> sendMessage(String ethAddress, String message) async {
+  static Future<void> sendMessage(
+      context, String ethAddress, String message) async {
     EthereumAddress address = EthereumAddress.fromHex(ethAddress);
-    await writeToBlockchain("sendMessage", [address, message]);
+    await writeToBlockchain(context, "sendMessage", [address, message]);
   }
 
-  static Future<List<dynamic>> getMessages(String ethAddress) async {
+  static Future<List<dynamic>> getMessages(context,String ethAddress) async {
     EthereumAddress address = EthereumAddress.fromHex(ethAddress);
-    final result = await readFromBlockchain("getMessages", [address]);
+    final result = await readFromBlockchain(context,"getMessages", [address]);
     return result;
   }
 
