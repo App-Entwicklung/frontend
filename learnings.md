@@ -28,3 +28,17 @@ Upgrading new Contracts -> let User select if new Contract is deployed which to 
 ## Chain-Url
 
 Chain-Url: https://goerli.blockpi.network/v1/rpc/public verwendet für Goerli-testnet (Bestbewertet in https://chainlist.org/chain/5)
+
+## Blocks und unsere Versuche
+
+- SendTransaction wirft dauerhaft den Fehler -32000 mit msg "insufficient funds" oder ähnliches (trotz genügend funds)
+  - Paralelle Erstellung von Svelte-Frontends zum Ausprobieren von anderen Libraries und Frameworks
+    - ethers: funktioniert nicht, Doku nicht passend zum aktuellen Stand
+    - web3: funktioniert nicht, Doku nicht passend zum aktuellen Stand
+    - klassische JavaScript-Varianten laufen auch nicht
+  - Deployment auf anderem Testnet
+    - nichtssagende RPC-Error-Messages
+  - andere RPC-Endpunkte ausprobiert
+    - andere Fehlermessages, selbes Problem
+- web3dart seit Februar 2022 nicht mehr maintained, aber keine alternative
+- MetaMask supported vieles nicht mehr
