@@ -338,7 +338,7 @@ const contractAbi = [
 ];
 
 // Erstellen einer Instanz des Web3-Objekts
-const web3 = new Web3('https://goerli.infura.io/v3/89e66bf285384738935ae59652b10ce9');
+const web3 = new Web3(window.ethereum);
 
 // Erstellen einer Instanz des Smart Contracts
 const contract = new web3.eth.Contract(contractAbi, contractAddress);
