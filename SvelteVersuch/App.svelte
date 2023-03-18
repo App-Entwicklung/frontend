@@ -4,6 +4,7 @@
 
   let contractValue = null;
   let userAddress = null;
+  let newUsername = ''; // Die Variable, die den Wert des Texteingabefelds speichert
 
 	async function connectWallet() {
 		if (window.ethereum) {
@@ -35,15 +36,20 @@
 
   
 	async function setName() {
-		await contract.methods.setName('PatrickZwei').send({
-		from: userAddress,
-    gas: 100000
+		await contract.methods.setName(newUsername).send({
+		from: userAddress
 	});
   }
 
   onMount(async () => {
     await setName();
   });
+
+
+  function handleSubmitNewUsername() {
+    console.log(newUsername); // Gibt den Wert der Variable `name` in der Konsole aus
+
+  }
 
 
 
@@ -58,6 +64,10 @@
 <button on:click={getName}>Read Name</button>
 
 
-<button on:click={setName}>Send Something (Change Name)</button>
+<form on:submit|preventDefault={handleSubmitNewUsername}>
+	<label for="name">Name:</label>
+	<input type="text" id="name" bind:value={newUsername}>
+	<button on:click={setName}>Send Something (Change Name)</button>
+  </form>
 
 </main>
