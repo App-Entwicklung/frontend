@@ -42,3 +42,11 @@ Chain-Url: https://goerli.blockpi.network/v1/rpc/public verwendet für Goerli-te
     - andere Fehlermessages, selbes Problem
 - web3dart seit Februar 2022 nicht mehr maintained, aber keine alternative
 - MetaMask supported vieles nicht mehr
+
+
+## Versuch mit Web3.js 
+- Daten lesen funktioniert.
+- Beim Schreiben tritt allerdings folgende Fehlermeldung auf:
+- Uncaught (in promise) Error: Returned error: The method eth_sendTransaction does not exist/is not available
+
+Der Code ist unter dem Ordner SvelteVersuch zu finden.
