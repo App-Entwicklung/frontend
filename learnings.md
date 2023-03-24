@@ -34,6 +34,7 @@ Chain-Url: https://goerli.blockpi.network/v1/rpc/public verwendet für Goerli-te
 - SendTransaction wirft dauerhaft den Fehler -32000 mit msg "insufficient funds" oder ähnliches (trotz genügend funds)
   - Paralelle Erstellung von Svelte-Frontends zum Ausprobieren von anderen Libraries und Frameworks
     - ethers: funktioniert nicht, Doku nicht passend zum aktuellen Stand
+      - funktioniert doch => Doku auf dem Stand von v5, aber v6 aktuell
     - web3: funktioniert nicht, Doku nicht passend zum aktuellen Stand
     - klassische JavaScript-Varianten laufen auch nicht
   - Deployment auf anderem Testnet
